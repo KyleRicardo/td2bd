@@ -1,5 +1,15 @@
 {
 	"files.associations": {
 		"wrangler.json": "jsonc"
+	},
+  "oxc.fmt.experimental": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.oxc": "always",
 	}
+  // Or enable it for specific files:
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "oxc.oxc-vscode"
+  // },
 }

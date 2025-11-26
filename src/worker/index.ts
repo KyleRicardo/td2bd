@@ -1,6 +1,9 @@
-import { Hono } from "hono";
-const app = new Hono<{ Bindings: Env }>();
+import { Hono } from 'hono'
+import { zValidator } from '@hono/zod-validator'
 
-app.get("/api/", (c) => c.json({ name: "Cloudflare" }));
+const app = new Hono<{ Bindings: Env }>()
 
-export default app;
+const route = app.get('/api', (c) => c.json({ name: 'Kyle Ricardo' }))
+
+export default app
+export type AppType = typeof route

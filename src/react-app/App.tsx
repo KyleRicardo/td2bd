@@ -6,6 +6,7 @@ import viteLogo from "/vite.svg";
 import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
 import honoLogo from "./assets/hono.svg";
 import "./App.css";
+import { client } from "./lib/client";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -46,8 +47,8 @@ function App() {
 			<div className="card">
 				<button
 					onClick={() => {
-						fetch("/api/")
-							.then((res) => res.json() as Promise<{ name: string }>)
+						client.api.$get()
+							.then((res) => res.json())
 							.then((data) => setName(data.name));
 					}}
 					aria-label="get name"
