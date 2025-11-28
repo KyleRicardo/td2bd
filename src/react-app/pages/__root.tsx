@@ -1,6 +1,20 @@
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Button } from '@/components/ui/button'
 
-function App() {
+export const Route = createRootRoute({
+  component: RootComponent,
+  notFoundComponent: () => {
+    return (
+      <div>
+        <p>This is the notFoundComponent configured on root route</p>
+        <Link to="/">Start Over</Link>
+      </div>
+    )
+  },
+})
+
+function RootComponent() {
   return (
     <>
       <div className="sticky top-0 z-40 transform">
@@ -11,11 +25,28 @@ function App() {
             <div className="flex items-center px-6 lg:px-0 flex-1 sm:items-stretch justify-between">
               <div className="flex items-center">
                 <div className="flex items-center shrink-0">
-                  TD2BD
+                  <Link
+                    to="/"
+                    activeProps={{
+                      className: 'font-bold',
+                    }}
+                    activeOptions={{ exact: true }}
+                  >
+                    TD2BD
+                  </Link>
                 </div>
                 <nav className="relative z-10 flex-1 items-center justify-center hidden pl-8 sm:space-x-4 lg:flex h-16">
                   <ul className="flex flex-1 list-none items-center justify-center space-x-1">
-                    <li>配装</li>
+                    <li>
+                      <Link
+                        to="/loadouts"
+                        activeProps={{
+                          className: 'font-bold',
+                        }}
+                      >
+                        配装
+                      </Link>
+                    </li>
                     <li>社区</li>
                     <li>百科</li>
                   </ul>
@@ -30,10 +61,10 @@ function App() {
         </nav>
       </div>
       <main className="relative min-h-screen">
-
+        <Outlet />
       </main>
+      {/* Start rendering router matches */}
+      <TanStackRouterDevtools position="bottom-right" />
     </>
   )
 }
-
-export default App
