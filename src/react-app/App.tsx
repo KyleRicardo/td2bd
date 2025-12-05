@@ -23,8 +23,8 @@ function App() {
               </div>
             </div>
             <div className="flex gap-2 items-center">
-              <Button variant="outline" size="sm">注册</Button>
-              <Button size="sm">构建你的配装</Button>
+              <Button variant="outline">注册</Button>
+              <Button>构建你的配装</Button>
             </div>
           </div>
         </nav>

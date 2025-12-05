@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './pages/__root'
 import { Route as IndexRouteImport } from './pages/index'
 import { Route as LoadoutsIndexRouteImport } from './pages/loadouts/index'
+import { Route as LoadoutsLoadoutIdRouteImport } from './pages/loadouts/$loadoutId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const LoadoutsIndexRoute = LoadoutsIndexRouteImport.update({
   path: '/loadouts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoadoutsLoadoutIdRoute = LoadoutsLoadoutIdRouteImport.update({
+  id: '/loadouts/$loadoutId',
+  path: '/loadouts/$loadoutId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/loadouts/$loadoutId': typeof LoadoutsLoadoutIdRoute
   '/loadouts': typeof LoadoutsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/loadouts/$loadoutId': typeof LoadoutsLoadoutIdRoute
   '/loadouts': typeof LoadoutsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/loadouts/$loadoutId': typeof LoadoutsLoadoutIdRoute
   '/loadouts/': typeof LoadoutsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/loadouts'
+  fullPaths: '/' | '/loadouts/$loadoutId' | '/loadouts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/loadouts'
-  id: '__root__' | '/' | '/loadouts/'
+  to: '/' | '/loadouts/$loadoutId' | '/loadouts'
+  id: '__root__' | '/' | '/loadouts/$loadoutId' | '/loadouts/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoadoutsLoadoutIdRoute: typeof LoadoutsLoadoutIdRoute
   LoadoutsIndexRoute: typeof LoadoutsIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoadoutsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/loadouts/$loadoutId': {
+      id: '/loadouts/$loadoutId'
+      path: '/loadouts/$loadoutId'
+      fullPath: '/loadouts/$loadoutId'
+      preLoaderRoute: typeof LoadoutsLoadoutIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoadoutsLoadoutIdRoute: LoadoutsLoadoutIdRoute,
   LoadoutsIndexRoute: LoadoutsIndexRoute,
 }
 export const routeTree = rootRouteImport

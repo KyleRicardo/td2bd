@@ -43,6 +43,12 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+  --color-gear-exotic: var(--gear-exotic);
+  --background-image-gear-exotic-background: var(--gear-exotic-background);
+  --color-gear-gearset: var(--gear-gearset);
+  --background-image-gear-gearset-background: var(--gear-gearset-background);
+  --color-gear-highend: var(--gear-highend);
+  --background-image-gear-highend-background: var(--gear-highend-background);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -102,13 +108,13 @@
 }
 
 .dark {
-  --background: var(--color-zinc-950);
-  --foreground: var(--color-zinc-100);
-  --card: color-mix(in srgb, var(--color-zinc-900) 80%, var(--color-zinc-950));
+  --background: oklch(0.2435 0 0);
+  --foreground: oklch(0.9608 0.0054 95.1);
+  --card: --alpha(var(--color-foreground) / 50%);
   --card-foreground: var(--color-zinc-100);
   --popover: var(--color-zinc-900);
   --popover-foreground: var(--color-zinc-100);
-  --primary: var(--color-zinc-100);
+  --primary: oklch(0.7013 0.1996 43.67);
   --primary-foreground: var(--color-zinc-900);
   --secondary: --alpha(var(--color-white) / 8%);
   --secondary-foreground: var(--color-zinc-100);
@@ -117,7 +123,7 @@
   --accent: --alpha(var(--color-white) / 8%);
   --accent-foreground: var(--color-zinc-100);
   --destructive: var(--color-red-500);
-  --border: --alpha(var(--color-white) / 12%);
+  --border: --alpha(var(--color-foreground) / 50%);
   --input: --alpha(var(--color-white) / 12%);
   --ring: var(--color-zinc-500);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -140,6 +146,12 @@
   --success-foreground: var(--color-emerald-400);
   --warning: var(--color-amber-500);
   --warning-foreground: var(--color-amber-400);
+  --gear-exotic: #FF6337;
+  --gear-exotic-background: linear-gradient(90deg, rgba(255, 99, 55, 0.46) 0%, rgba(189, 54, 16, 0.08) 56.44%, rgba(255, 99, 55, 0.00) 100%);
+  --gear-gearset: #01FF90;
+  --gear-gearset-background: linear-gradient(90deg, rgba(1, 255, 144, 0.48) 0%, rgba(24, 178, 111, 0.08) 55.75%, rgba(1, 255, 144, 0.00) 100%);
+  --gear-highend: #FFAF10;
+  --gear-highend-background: linear-gradient(90deg, rgba(255, 175, 16, 0.46) 0%, rgba(197, 147, 46, 0.08) 56%, rgba(255, 175, 16, 0.00) 100%);
 }
 
 @layer base {
