@@ -1,9 +1,28 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* 1. 定义 Borda (全境英文字体) */
+@font-face {
+  font-family: 'Borda';
+  src: url('/fonts/Borda.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. 定义华康圆体 (DFYuan - 全境中文字体) */
+@font-face {
+  font-family: 'DFYuan';
+  src: url('/fonts/DFYuanGB-W3.woff2') format('woff2'); /* 假设是 W3 粗细 */
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-division: var(--font-division);
   --animate-skeleton: skeleton 2s -1s infinite linear;
   --color-warning-foreground: var(--warning-foreground);
   --color-warning: var(--warning);
@@ -105,6 +124,7 @@
   --success-foreground: var(--color-emerald-700);
   --warning: var(--color-amber-500);
   --warning-foreground: var(--color-amber-700);
+  --font-division: 'Borda', 'DFYuan', sans-serif;
 }
 
 .dark {

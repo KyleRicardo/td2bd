@@ -1,13 +1,19 @@
+import type { WeaponType } from '@shared/types'
 import { cn } from '@/lib/utils'
 import { Card } from './card'
+import { WeaponAttribute } from './weapon-attribute'
+import { WeaponCoreAttribute1 } from './weapon-core-attribute1'
+import { WeaponCoreAttribute2 } from './weapon-core-attribute2'
+import { WeaponIcon } from './weapon-icon'
+import { WeaponTalent } from './weapon-talent'
 
 interface Props {
   name: string
-  category: string
+  type: WeaponType
   rank: 'exotic' | 'named' | 'high-end'
-  coreProperty: string
-  property1: string
-  property2: string
+  coreProperty1: string
+  coreProperty2: string
+  property?: string
   talent: string
   mod1?: string
   mod2?: string
@@ -29,12 +35,11 @@ function WeaponCard(props: Props) {
         'bg-gear-highend-background': props.rank === 'high-end' || props.rank === 'named',
       })}
       >
-        <div className="flex flex-col gap-2">
-          <img />
-          <div className="flex gap-1 items-center">
-            <img />
-            <span>{props.talent}</span>
+        <div className="flex flex-col gap-2 min-w-20 items-center">
+          <div className="flex flex-1 flex-col justify-center">
+            <WeaponIcon type={props.type} />
           </div>
+          <WeaponTalent talentId={props.talent} />
         </div>
 
         <div className="flex flex-col gap-1">
@@ -45,21 +50,11 @@ function WeaponCard(props: Props) {
           >
             {props.name}
           </div>
-          <div className="flex gap-1 items-center">
-            <img />
-            <span className="text-primary">+15%</span>
-            <span>突击步枪伤害</span>
-          </div>
-          <div className="flex gap-1 items-center">
-            <img />
-            <span className="text-primary">+21%</span>
-            <span>生命值伤害</span>
-          </div>
-          <div className="flex gap-1 items-center">
-            <img />
-            <span className="text-primary">+10%</span>
-            <span>掩体伤害</span>
-          </div>
+          <WeaponCoreAttribute1 type={props.type} />
+          <WeaponCoreAttribute2 attributeId="hp_dmg" value={21} />
+          {props.property && (
+            <WeaponAttribute attributeId="toc_dmg" value={12} />
+          )}
         </div>
       </div>
     </Card>

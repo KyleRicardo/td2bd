@@ -1,0 +1,19 @@
+{
+  "ch_chance": "暴击几率",
+  "ch_dmg": "暴击伤害",
+  "hs_dmg": "爆头伤害",
+  "elite_protection": "精英防御",
+  "bleed_resist": "出血抗性",
+  "disrupt_resist": "干扰抗性",
+  "burn_resist": "燃烧抗性",
+  "ensnare_resist": "诱捕抗性",
+  "shock_resist": "电击抗性",
+  "disorient_resist": "混乱抗性",
+  "blind_resist": "致盲抗性",
+  "pulse_resist": "脉冲抗性",
+  "incom_repair": "受到修复",
+  "armor_on_kill": "击杀回甲",
+  "skill_haste": "技能加速",
+  "repair_skills": "修复技能",
+  "skill_duration": "技能持续"
+}

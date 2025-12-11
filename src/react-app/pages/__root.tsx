@@ -16,7 +16,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <>
+    <div className="min-h-screen font-division">
       <div className="sticky top-0 z-40 transform">
         <div className="absolute inset-0 h-full w-full bg-background/90 dark:bg-background/95 transition-opacity">
         </div>
@@ -65,6 +65,6 @@ function RootComponent() {
       </main>
       {/* Start rendering router matches */}
       <TanStackRouterDevtools position="bottom-right" />
-    </>
+    </div>
   )
 }

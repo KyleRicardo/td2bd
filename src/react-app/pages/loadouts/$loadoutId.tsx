@@ -1,3 +1,5 @@
+import { GearAttributeIds, GearCoreAttributeIds, GearModIds } from '@shared/constants/ids'
+import { GearRarity, GearSlot, GearStatType, WeaponType } from '@shared/types'
 import { createFileRoute } from '@tanstack/react-router'
 import heavyGunnerImg from '@/assets/heavygunner.png'
 import { Button } from '@/components/button'
@@ -11,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/dialog'
+import { GearCard } from '@/components/gear-card'
 import { WeaponCard } from '@/components/weapon-card'
 
 export const Route = createFileRoute('/loadouts/$loadoutId')({
@@ -18,7 +21,8 @@ export const Route = createFileRoute('/loadouts/$loadoutId')({
 })
 
 function LoadoutDetail() {
-  const { loadoutId } = Route.useParams()
+  // const { loadoutId } = Route.useParams()
+
   return (
     <>
       <Dialog>
@@ -42,7 +46,7 @@ function LoadoutDetail() {
       </Dialog>
       <h2>抹灭突袭</h2>
       <div className="grid gap-2 max-w-sm sm:max-w-lg mx-auto">
-        <div className="grid grid-cols-2 gap-2 sm:gap-4">
+        <div className="grid grid-cols-2 gap-1 sm:gap-2">
           <div className="relative grid grid-cols-[72px_1fr] border">
             <div className="absolute h-[3px] w-[3px] -top-0.5 -left-0.5 bg-border" />
             <div className="absolute h-[3px] w-[3px] -bottom-0.5 -left-0.5 bg-border" />
@@ -86,12 +90,56 @@ function LoadoutDetail() {
         <div className="grid gap-2">
           <WeaponCard
             name="圣艾尔莫引擎"
-            category="突击步枪"
+            type={WeaponType.AssaultRifle}
             rank="exotic"
-            coreProperty="突击步枪伤害"
-            property1="生命值伤害"
-            property2="掩体伤害"
-            talent="谢幕"
+            coreProperty1="突击步枪伤害"
+            coreProperty2="生命值伤害"
+            property="掩体伤害"
+            talent="actum_est"
+          />
+          <WeaponCard
+            name="摇滚"
+            type={WeaponType.Shotgun}
+            rank="named"
+            coreProperty1="霰弹枪伤害"
+            coreProperty2="装甲伤害"
+            property="掩体伤害"
+            talent="perfect_extra"
+          />
+          <WeaponCard
+            name={`"Kard"定制TDI`}
+            type={WeaponType.Pistol}
+            rank="named"
+            coreProperty1="手枪伤害"
+            coreProperty2="技能分阶"
+            talent="sledgehammer"
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <GearCard
+            slot={GearSlot.Mask}
+            id="coyotes_mask"
+            rarity={GearRarity.Exotic}
+            coreAttributes={[
+              {
+                id: GearCoreAttributeIds.WeaponDamage,
+                value: 15.0,
+              },
+            ]}
+            attributes={[
+              {
+                id: GearAttributeIds.CritHitChance,
+                value: 6.0,
+                recalibratable: true,
+              },
+            ]}
+            talent={{
+              id: 'pack_instincts',
+              recalibratable: false,
+            }}
+            mods={[
+              GearModIds.CritHitDamage,
+            ]}
           />
         </div>
       </div>
