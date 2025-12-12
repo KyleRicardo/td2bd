@@ -69,5 +69,9 @@
     "Kard",
     "recalibratable",
     "Regen"
-  ]
+  ],
+  "i18n-ally.localesPaths": [
+    "src/react-app/locales"
+  ],
+  "i18n-ally.keystyle": "nested"
 }
