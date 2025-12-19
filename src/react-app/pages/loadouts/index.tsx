@@ -32,7 +32,7 @@ function LoadoutList() {
                 <div className="flex w-full justify-center items-center gap-4">
                   <Button>
                     <PlusIcon />
-                    创建配装
+                    Create Loadout
                   </Button>
                   <Button variant="outline">
                     <ImportIcon />

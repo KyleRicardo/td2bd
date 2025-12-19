@@ -33,7 +33,7 @@ export function GearCoreAttributeIcon({ type, className, ...props }: React.Compo
   return (
     <img
       className={cn(
-        'size-4 object-contain',
+        'size-3 object-contain shrink-0',
         className,
       )}
       src={src}
@@ -49,7 +49,7 @@ export function GearAttributeIcon({ type, className, ...props }: React.Component
   return (
     <img
       className={cn(
-        'size-4 object-contain',
+        'size-3 object-contain shrink-0',
         className,
       )}
       src={src}
@@ -65,7 +65,7 @@ export function GearModIcon({ type, className, ...props }: React.ComponentProps<
   return (
     <img
       className={cn(
-        'size-4 object-contain',
+        'size-3 object-contain shrink-0',
         className,
       )}
       src={src}

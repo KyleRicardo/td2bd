@@ -7,6 +7,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
+    cloudflare(),
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
@@ -14,7 +15,6 @@ export default defineConfig({
       generatedRouteTree: path.resolve(__dirname, 'src/react-app/routeTree.gen.ts'),
     }),
     react(),
-    cloudflare(),
     tailwindcss(),
   ],
   resolve: {

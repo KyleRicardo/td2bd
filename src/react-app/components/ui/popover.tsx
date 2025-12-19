@@ -1,78 +1,68 @@
-"use client";
+import * as React from "react"
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
-import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { cn } from "@/lib/utils"
 
-import { cn } from "@/lib/utils";
-
-const Popover = PopoverPrimitive.Root;
-
-function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
+function Popover({ ...props }: PopoverPrimitive.Root.Props) {
+  return <PopoverPrimitive.Root data-slot="popover" {...props} />
 }
 
-function PopoverPopup({
-  children,
+function PopoverTrigger({ ...props }: PopoverPrimitive.Trigger.Props) {
+  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
+}
+
+function PopoverContent({
   className,
-  side = "bottom",
   align = "center",
-  sideOffset = 4,
   alignOffset = 0,
-  tooltipStyle = false,
+  side = "bottom",
+  sideOffset = 4,
   ...props
-}: PopoverPrimitive.Popup.Props & {
-  side?: PopoverPrimitive.Positioner.Props["side"];
-  align?: PopoverPrimitive.Positioner.Props["align"];
-  sideOffset?: PopoverPrimitive.Positioner.Props["sideOffset"];
-  alignOffset?: PopoverPrimitive.Positioner.Props["alignOffset"];
-  tooltipStyle?: boolean;
-}) {
+}: PopoverPrimitive.Popup.Props &
+  Pick<
+    PopoverPrimitive.Positioner.Props,
+    "align" | "alignOffset" | "side" | "sideOffset"
+  >) {
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Positioner
         align={align}
         alignOffset={alignOffset}
-        className="z-50"
-        data-slot="popover-positioner"
         side={side}
         sideOffset={sideOffset}
+        className="isolate z-50"
       >
-        <span
+        <PopoverPrimitive.Popup
+          data-slot="popover-content"
           className={cn(
-            "relative flex origin-(--transform-origin) rounded-lg border bg-popover bg-clip-padding shadow-lg transition-[scale,opacity] not-[class*='w-']:[min-w-80] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] has-data-starting-style:scale-98 has-data-starting-style:opacity-0 dark:bg-clip-border dark:before:shadow-[0_-1px_--theme(--color-white/8%)]",
-            tooltipStyle &&
-              "w-fit text-balance rounded-md text-xs shadow-black/5 shadow-md before:rounded-[calc(var(--radius-md)-1px)]",
-            className,
+            "bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 flex flex-col gap-2.5 rounded-none p-2.5 text-xs shadow-md ring-1 duration-100 z-50 w-72 origin-(--transform-origin) outline-hidden",
+            className
           )}
-        >
-          <PopoverPrimitive.Popup
-            className={cn(
-              "max-h-(--available-height) w-full overflow-y-auto p-4 outline-none",
-              tooltipStyle &&
-                "px-[calc(--spacing(2)+1px)] py-[calc(--spacing(1)+1px)]",
-            )}
-            data-slot="popover-content"
-            {...props}
-          >
-            {children}
-          </PopoverPrimitive.Popup>
-        </span>
+          {...props}
+        />
       </PopoverPrimitive.Positioner>
     </PopoverPrimitive.Portal>
-  );
+  )
 }
 
-function PopoverClose({ ...props }: PopoverPrimitive.Close.Props) {
-  return <PopoverPrimitive.Close data-slot="popover-close" {...props} />;
+function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="popover-header"
+      className={cn("flex flex-col gap-1 text-xs", className)}
+      {...props}
+    />
+  )
 }
 
 function PopoverTitle({ className, ...props }: PopoverPrimitive.Title.Props) {
   return (
     <PopoverPrimitive.Title
-      className={cn("font-semibold text-lg leading-none", className)}
       data-slot="popover-title"
+      className={cn("text-sm font-medium", className)}
       {...props}
     />
-  );
+  )
 }
 
 function PopoverDescription({
@@ -81,19 +71,18 @@ function PopoverDescription({
 }: PopoverPrimitive.Description.Props) {
   return (
     <PopoverPrimitive.Description
-      className={cn("text-muted-foreground text-sm", className)}
       data-slot="popover-description"
+      className={cn("text-muted-foreground text-xs/relaxed", className)}
       {...props}
     />
-  );
+  )
 }
 
 export {
   Popover,
-  PopoverTrigger,
-  PopoverPopup,
-  PopoverPopup as PopoverContent,
-  PopoverTitle,
+  PopoverContent,
   PopoverDescription,
-  PopoverClose,
-};
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+}

@@ -1,3 +1,4 @@
+import type { GearBrandId, GearSetId } from '../constants/ids'
 import { GearRarity, GearSlot, GearStatType } from '../types'
 
 // 定义一个严格的类型，确保数据不写歪
@@ -6,8 +7,8 @@ export interface GearData {
   id: string
   slot: GearSlot
   rarity: GearRarity
-  nameKey: string // i18n key
-  brandId?: string // 金装或绿装的品牌套装名称 i18n key
+  gearBrandId?: GearBrandId // 金装品牌ID
+  gearSetId?: GearSetId // 装备组ID
   coreAttributes: {
     // 除了奇特以外，其他装备的核心属性都是可以洗的，所以recalibratable根据rarity来计算就行了
     type: GearStatType
@@ -32,7 +33,6 @@ export const GEARS: readonly GearData[] = [
     id: 'coyotes_mask',
     slot: GearSlot.Mask,
     rarity: GearRarity.Exotic,
-    nameKey: 'coyotes_mask',
     coreAttributes: [
       { type: GearStatType.Offensive },
     ],

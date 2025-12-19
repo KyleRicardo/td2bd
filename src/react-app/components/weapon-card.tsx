@@ -1,59 +1,78 @@
+import type { WeaponAttributeId, WeaponCoreAttributeId, WeaponModId, WeaponTalentId } from '@shared/constants/ids'
 import type { WeaponType } from '@shared/types'
+import { WeaponRarity } from '@shared/types'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { Card } from './card'
 import { WeaponAttribute } from './weapon-attribute'
-import { WeaponCoreAttribute1 } from './weapon-core-attribute1'
-import { WeaponCoreAttribute2 } from './weapon-core-attribute2'
+import { WeaponCoreAttribute } from './weapon-core-attribute'
 import { WeaponIcon } from './weapon-icon'
 import { WeaponTalent } from './weapon-talent'
 
-interface Props {
-  name: string
+export interface WeaponData {
+  id: string
   type: WeaponType
-  rank: 'exotic' | 'named' | 'high-end'
-  coreProperty1: string
-  coreProperty2: string
-  property?: string
-  talent: string
-  mod1?: string
-  mod2?: string
-  mod3?: string
-  mod4?: string
+  rarity: WeaponRarity
+  coreAttributes: {
+    id: WeaponCoreAttributeId
+    value: number
+  }[]
+  attribute?: {
+    id: WeaponAttributeId
+    value: number
+  }
+  talent: {
+    id: WeaponTalentId
+    recalibratable: boolean
+  }
+  mods: {
+    opticRail: WeaponModId | null
+    muzzle: WeaponModId | null
+    underBarrelRail: WeaponModId | null
+    magazineSlot: WeaponModId | null
+  }
 }
 
-function WeaponCard(props: Props) {
+interface Props {
+  data: WeaponData
+}
+
+function WeaponCard({ data }: Props) {
+  const { t } = useTranslation('weapons')
+
   return (
-    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] min-h-24 backdrop-blur-lg">
+    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] text-sm min-h-[92px] backdrop-blur-lg">
       <div className={cn({
-        'bg-gear-exotic': props.rank === 'exotic',
-        'bg-gear-highend': props.rank === 'high-end' || props.rank === 'named',
+        'bg-gear-exotic': data.rarity === WeaponRarity.Exotic,
+        'bg-gear-highend': data.rarity === WeaponRarity.HighEnd || data.rarity === WeaponRarity.Named,
       })}
       >
       </div>
       <div className={cn('flex gap-2 p-1', {
-        'bg-gear-exotic-background': props.rank === 'exotic',
-        'bg-gear-highend-background': props.rank === 'high-end' || props.rank === 'named',
+        'bg-gear-exotic-background': data.rarity === WeaponRarity.Exotic,
+        'bg-gear-highend-background': data.rarity === WeaponRarity.HighEnd || data.rarity === WeaponRarity.Named,
       })}
       >
         <div className="flex flex-col gap-2 min-w-20 items-center">
           <div className="flex flex-1 flex-col justify-center">
-            <WeaponIcon type={props.type} />
+            <WeaponIcon type={data.type} />
           </div>
-          <WeaponTalent talentId={props.talent} />
+          <WeaponTalent talentId={data.talent.id} recalibratable={data.talent.recalibratable} />
         </div>
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col flex-1 gap-1">
           <div className={cn({
-            'text-gear-exotic': props.rank === 'exotic',
-            'text-gear-highend': props.rank === 'named',
+            'text-gear-exotic': data.rarity === WeaponRarity.Exotic,
+            'text-gear-highend': data.rarity === WeaponRarity.Named,
           })}
           >
-            {props.name}
+            {t(data.id)}
           </div>
-          <WeaponCoreAttribute1 type={props.type} />
-          <WeaponCoreAttribute2 attributeId="hp_dmg" value={21} />
-          {props.property && (
-            <WeaponAttribute attributeId="toc_dmg" value={12} />
+          {data.coreAttributes.map(coreAttr => (
+            <WeaponCoreAttribute key={coreAttr.id} attributeId={coreAttr.id} value={coreAttr.value} />
+          ))}
+          {data.attribute && (
+            <WeaponAttribute attributeId={data.attribute.id} value={data.attribute.value} />
           )}
         </div>
       </div>

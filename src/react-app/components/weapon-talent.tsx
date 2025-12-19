@@ -1,29 +1,31 @@
+import type { WeaponTalentId } from '@shared/constants/ids'
+import { WEAPON_TALENTS_REGISTRY } from '@shared/gamedata/weapon-talents'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils' // 假设你有类似 shadcn 的 classnames 工具
 
 interface Props {
-  talentId: string // "突击步枪伤害"
-  editable?: boolean // 是否可编辑（可选）
-  isPerfect?: boolean // 是否为具名物品（可选）
+  talentId: WeaponTalentId
+  recalibratable: boolean // 是否可重新校准
 }
 
 export function WeaponTalent({
   talentId,
-  editable,
-  isPerfect,
+  recalibratable,
   onClick,
   className,
   ...props
 }: React.ComponentProps<'div'> & Props) {
   const { t } = useTranslation('talents')
 
+  const talentData = WEAPON_TALENTS_REGISTRY[talentId]
+
   return (
     <div
       onClick={onClick}
       className={cn(
-        'flex items-center gap-0.5 py-1 select-none',
+        'flex items-center gap-0.5 select-none',
         // 如果可点击，加个 hover 效果和手型指针，模拟游戏内的交互感
-        editable && 'cursor-pointer hover:bg-white/5 active:bg-white/10 transition-colors rounded',
+        recalibratable && 'cursor-pointer hover:bg-white/5 active:bg-white/10 transition-colors rounded',
         className,
       )}
       {...props}
@@ -34,9 +36,9 @@ export function WeaponTalent({
       </div>
 
       {/* 2. 文本 */}
-      <div className="flex items-baseline gap-2 text-sm font-medium leading-none">
+      <div className="flex items-baseline gap-2 text-sm font-medium leading-none text-nowrap">
         <span className={cn({
-          'text-gear-highend': isPerfect,
+          'text-gear-highend': talentData.isPerfect,
         })}
         >
           {t(talentId)}

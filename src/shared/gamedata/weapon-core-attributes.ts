@@ -60,17 +60,22 @@ export const WEAPON_CORE_ATTRIBUTE_REGISTRY: Record<WeaponCoreAttributeId, Weapo
   },
   [WeaponCoreAttributeIds.CritHitChance]: {
     id: WeaponCoreAttributeIds.CritHitChance,
-    format: v => `${v.toFixed(0)}%`,
+    format: v => `+${v.toFixed(0)}%`,
     standardMaxValue: 21.0,
   },
   [WeaponCoreAttributeIds.CritHitDamage]: {
     id: WeaponCoreAttributeIds.CritHitDamage,
-    format: v => `${v.toFixed(0)}%`,
+    format: v => `+${v.toFixed(0)}%`,
     standardMaxValue: 17.0,
   },
   [WeaponCoreAttributeIds.HeadshotDamage]: {
     id: WeaponCoreAttributeIds.HeadshotDamage,
-    format: v => `${v.toFixed(0)}%`,
+    format: v => `+${v.toFixed(0)}%`,
     standardMaxValue: 111.0,
+  },
+  [WeaponCoreAttributeIds.SkillTier]: {
+    id: WeaponCoreAttributeIds.SkillTier,
+    format: v => `+${v}`,
+    standardMaxValue: 1,
   },
 } as const

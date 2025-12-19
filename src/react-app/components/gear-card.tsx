@@ -1,20 +1,23 @@
-import type { GearAttributeId, GearCoreAttributeId, GearModId } from '@shared/constants/ids'
-import type { GearRarity, GearSlot } from '@shared/types'
-import { GearAttributeIds, GearCoreAttributeIds } from '@shared/constants/ids'
+import type { GearAttributeId, GearBrandId, GearCoreAttributeId, GearModId, GearSetId, GearTalentId } from '@shared/constants/ids'
+import type { GearSlot } from '@shared/types'
+import { GearRarity } from '@shared/types'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { Card } from './card'
 import { GearAttribute } from './gear-attribute'
+import { GearBrandIcon } from './gear-brand-icon'
 import { GearCoreAttribute } from './gear-core-attribute'
 import { GearMod } from './gear-mod'
+import { GearSetIcon } from './gear-set-icon'
 import { GearSlotIcon } from './gear-slot-icon'
-import { WeaponTalent } from './weapon-talent'
+import { GearTalent } from './gear-talent'
 
 export interface GearData {
   id: string
   slot: GearSlot
   rarity: GearRarity
-  brandId?: string // 金装或绿装的品牌套装名称 i18n key
+  gearBrandId?: GearBrandId
+  gearSetId?: GearSetId
   coreAttributes: {
     // 除了奇特都可以洗
     id: GearCoreAttributeId
@@ -25,56 +28,79 @@ export interface GearData {
   attributes: {
     id: GearAttributeId
     value: number
+    isNamedItem?: boolean
     recalibratable: boolean
   }[]
-  talent: {
-    id: string
+  talent?: {
+    id: GearTalentId
     recalibratable: boolean
-  } | null
+  }
   // 装备的改装槽位，最少 0 个，最多 2 个
   mods: GearModId[]
 }
 
-function GearCard(props: GearData) {
-  const { t } = useTranslation('gears')
+interface Props {
+  data: GearData
+}
+
+function GearCard({ data }: Props) {
+  const { t } = useTranslation()
+
+  let displayName = ''
+  if (data.rarity === GearRarity.Exotic || data.rarity === GearRarity.Named) {
+    displayName = t(data.id, { ns: 'gears' })
+  }
+  else if (data.gearBrandId) {
+    displayName = t(data.gearBrandId || '', { ns: 'brands' })
+  }
+  else if (data.gearSetId) {
+    displayName = t(data.gearSetId || '', { ns: 'gearsets' })
+  }
 
   return (
-    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] min-h-24 backdrop-blur-lg">
+    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] text-[13px] min-h-[86px] backdrop-blur-lg">
       <div className={cn({
-        'bg-gear-exotic': props.rarity === 'exotic',
-        'bg-gear-highend': props.rarity === 'high-end' || props.rarity === 'named',
-        'bg-gear-gearset': props.rarity === 'gear-set',
+        'bg-gear-exotic': data.rarity === GearRarity.Exotic,
+        'bg-gear-highend': data.rarity === GearRarity.HighEnd || data.rarity === GearRarity.Named,
+        'bg-gear-gearset': data.rarity === GearRarity.GearSet,
       })}
       >
       </div>
-      <div className={cn('flex gap-2 p-1', {
-        'bg-gear-exotic-background': props.rarity === 'exotic',
-        'bg-gear-highend-background': props.rarity === 'high-end' || props.rarity === 'named',
-        'bg-gear-gearset': props.rarity === 'gear-set',
+      <div className={cn('flex py-0.5 overflow-hidden', {
+        'bg-gear-exotic-background': data.rarity === GearRarity.Exotic,
+        'bg-gear-highend-background': data.rarity === GearRarity.HighEnd || data.rarity === GearRarity.Named,
+        'bg-gear-gearset-background': data.rarity === GearRarity.GearSet,
       })}
       >
-        <div className="flex flex-col gap-1 min-w-20 justify-center items-center">
+        <div className="flex flex-col gap-1 min-w-[70px] flex-1 justify-center items-center overflow-clip">
           <div className="flex gap-0.5 items-center w-full">
-            <GearSlotIcon slot={props.slot} />
+            <GearSlotIcon slot={data.slot} />
             <span className={cn({
-              'text-gear-exotic': props.rarity === 'exotic',
-              'text-gear-highend': props.rarity === 'named',
+              'text-gear-exotic': data.rarity === GearRarity.Exotic,
+              'text-gear-highend': data.rarity === GearRarity.Named,
             })}
             >
-              {t(props.id)}
+              {displayName}
             </span>
           </div>
-          <GearSlotIcon slot={props.slot} className="size-9 flex-1" />
+          {data.rarity === GearRarity.Exotic && <GearSlotIcon slot={data.slot} className="size-9 flex-1" />}
+          {data.gearBrandId && <GearBrandIcon brandId={data.gearBrandId} className="size-9 flex-1" />}
+          {data.gearSetId && <GearSetIcon gearSetId={data.gearSetId} className="size-9 flex-1" />}
           <div className="flex gap-0.5 items-center w-full h-5">
-            {props.talent && <WeaponTalent talentId={props.talent.id} />}
+            {data.talent && <GearTalent talentId={data.talent.id} recalibratable={data.talent.recalibratable} />}
           </div>
         </div>
 
-        <div className="flex flex-col gap-1">
-          <GearCoreAttribute id={GearCoreAttributeIds.WeaponDamage} />
-          <GearAttribute id={GearAttributeIds.CritHitChance} />
-          <GearAttribute id={GearAttributeIds.CritHitDamage} />
-          {props.mods.map((modId, index) => <GearMod key={index} modId={modId} />)}
+        <div className="flex flex-col gap-0.5 overflow-hidden">
+          {data.coreAttributes.map(coreAttr => (
+            <GearCoreAttribute key={coreAttr.id} id={coreAttr.id} value={coreAttr.value} />
+          ))}
+          {data.attributes.map(attr => (
+            <GearAttribute key={attr.id} id={attr.id} value={attr.value} isNamedItem={attr.isNamedItem} />
+          ))}
+          <div className="flex flex-col gap-0.5 mt-auto">
+            {data.mods.map((modId, index) => <GearMod key={`${index}-${modId}`} modId={modId} />)}
+          </div>
         </div>
       </div>
     </Card>

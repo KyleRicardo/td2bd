@@ -13,7 +13,7 @@ i18n
   .init({
     lng: 'zh-CN',
     fallbackLng: 'en-US',
-    ns: ['ui', 'weapons', 'gears', 'gearmods', 'talents', 'attributes'], // 预加载的命名空间
+    ns: ['ui', 'weapons', 'gears', 'brands', 'gearsets', 'gearmods', 'talents', 'attributes'], // 预加载的命名空间
     interpolation: { escapeValue: false }, // React 自带防注入
   })
 
