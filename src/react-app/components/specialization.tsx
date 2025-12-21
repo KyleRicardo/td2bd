@@ -12,7 +12,7 @@ function Specialization({ id }: Props) {
   const data = SPECIALIZATIONS_REGISTRY[id]
 
   return (
-    <div className="relative grid grid-cols-[72px_1fr] border">
+    <div className="relative grid grid-cols-[64px_1fr] sm:grid-cols-[72px_1fr] border text-sm">
       <div className="absolute h-[3px] w-[3px] -top-0.5 -left-0.5 bg-border" />
       <div className="absolute h-[3px] w-[3px] -bottom-0.5 -left-0.5 bg-border" />
 
@@ -20,14 +20,14 @@ function Specialization({ id }: Props) {
         <img src={`/assets/specializations/${data.id}.png`} className="size-9 sm:size-12" alt={t(data.id)} />
       </div>
       <div className="relative grid grid-rows-2 border-l">
-        <div className="relative px-2">
+        <div className="relative px-2 flex flex-col justify-center">
           <div className="absolute h-[3px] w-[3px] -top-0.5 -left-0.5 bg-border" />
           <div className="absolute h-[3px] w-[3px] -bottom-0.5 -left-0.5 bg-border" />
           <div className="absolute h-[3px] w-[3px] -top-0.5 -right-0.5 bg-border" />
           <div className="absolute h-[3px] w-[3px] -bottom-0.5 -right-0.5 bg-border" />
           {t(data.id)}
         </div>
-        <div className="border-t">
+        <div className="relative px-2 flex flex-col justify-center border-t">
           <div className="absolute h-[3px] w-[3px] -bottom-0.5 -left-0.5 bg-border" />
           <div className="absolute h-[3px] w-[3px] -bottom-0.5 -right-0.5 bg-border" />
           {t(data.signatureWeaponId)}

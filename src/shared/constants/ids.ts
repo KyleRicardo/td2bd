@@ -11,6 +11,15 @@ export const SpecializationIds = {
 
 export type SpecializationId = typeof SpecializationIds[keyof typeof SpecializationIds]
 
+export const SeasonalModifierIds = {
+  Zealot: 'zealot',
+  UnfriendlyFire: 'unfriendly_fire',
+  RupertsTears: 'ruperts_tears',
+  Forbidden: 'forbidden',
+} as const
+
+export type SeasonalModifierId = typeof SeasonalModifierIds[keyof typeof SeasonalModifierIds]
+
 export const WeaponCoreAttributeIds = {
   // 武器核心属性 #1
   AssaultRifleDamage: 'ar_dmg',

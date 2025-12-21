@@ -3,6 +3,15 @@ import { GlobeIcon, ImportIcon, PlusIcon } from 'lucide-react'
 import armorImg from '@/assets/armor.png'
 import { Button } from '@/components/button'
 import { Card } from '@/components/card'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/dialog'
 
 export const Route = createFileRoute('/loadouts/')({
   component: LoadoutList,
@@ -43,6 +52,25 @@ function LoadoutList() {
                   <GlobeIcon />
                   浏览社区配装
                 </Button>
+                <Dialog>
+                  <DialogTrigger render={<Button variant="outline" />}>
+                    Open Dialog
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-sm">
+                    <DialogHeader>
+                      <DialogTitle>退出游戏</DialogTitle>
+                    </DialogHeader>
+                    <div>
+                      你确定要退出吗？
+                    </div>
+                    <DialogFooter>
+                      <DialogClose render={<Button variant="ghost" />}>
+                        取消
+                      </DialogClose>
+                      <Button type="submit">退出</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>

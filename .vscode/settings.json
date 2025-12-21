@@ -69,8 +69,10 @@
     "headshot",
     "Incom",
     "Kard",
+    "minigun",
     "recalibratable",
-    "Regen"
+    "Regen",
+    "Ruperts"
   ],
   "i18n-ally.localesPaths": [
     "src/react-app/locales"

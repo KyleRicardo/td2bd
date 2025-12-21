@@ -1,5 +1,5 @@
 import type { LoadoutData } from '@/pages/loadouts/$loadoutId'
-import { GearAttributeIds, GearBrandIds, GearCoreAttributeIds, GearModIds, GearSetIds, GearTalentIds, SkillVariantIds, SpecializationIds, WeaponAttributeIds, WeaponCoreAttributeIds, WeaponModIds, WeaponTalentIds } from '@shared/constants/ids'
+import { GearAttributeIds, GearBrandIds, GearCoreAttributeIds, GearModIds, GearSetIds, GearTalentIds, SeasonalModifierIds, SkillVariantIds, SpecializationIds, WeaponAttributeIds, WeaponCoreAttributeIds, WeaponModIds, WeaponTalentIds } from '@shared/constants/ids'
 import { GearRarity, GearSlot, WeaponRarity, WeaponType } from '@shared/types'
 
 const loadouts: LoadoutData[] = [
@@ -11,8 +11,12 @@ const loadouts: LoadoutData[] = [
     specializationId: SpecializationIds.Gunner,
     seasonalModifiers: {
       enabled: true,
-      activeModifierId: 'zealot',
-      passiveModifierIds: ['mod-002', 'mod-003'],
+      activeModifier: SeasonalModifierIds.Zealot,
+      passiveModifiers: {
+        slot1: SeasonalModifierIds.UnfriendlyFire,
+        slot2: SeasonalModifierIds.RupertsTears,
+        slot3: SeasonalModifierIds.Forbidden,
+      },
     },
     weapons: {
       primary: {
@@ -85,6 +89,7 @@ const loadouts: LoadoutData[] = [
           {
             id: WeaponCoreAttributeIds.SkillTier,
             value: 1,
+            isNamedItem: true,
           },
         ],
         talent: {

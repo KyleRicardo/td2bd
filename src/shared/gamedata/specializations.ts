@@ -10,27 +10,27 @@ export interface SpecializationDef {
 const SPECIALIZATIONS_REGISTRY: Record<SpecializationId, SpecializationDef> = {
   [SpecializationIds.Survivalist]: {
     id: SpecializationIds.Survivalist,
-    signatureWeaponId: 'sv_knife',
+    signatureWeaponId: 'crossbow',
   },
   [SpecializationIds.Demolitionist]: {
     id: SpecializationIds.Demolitionist,
-    signatureWeaponId: 'dmr_launcher',
+    signatureWeaponId: 'm32a1_grenade_launcher',
   },
   [SpecializationIds.Sharpshooter]: {
     id: SpecializationIds.Sharpshooter,
-    signatureWeaponId: 'ss_marksman_rifle',
+    signatureWeaponId: 'tac_50_sniper_rifle',
   },
   [SpecializationIds.Gunner]: {
     id: SpecializationIds.Gunner,
-    signatureWeaponId: 'hg_light_machine_gun',
+    signatureWeaponId: 'minigun',
   },
   [SpecializationIds.Technician]: {
     id: SpecializationIds.Technician,
-    signatureWeaponId: 'tnc_assault_rifle',
+    signatureWeaponId: 'p_017_missile_launcher',
   },
   [SpecializationIds.Firewall]: {
     id: SpecializationIds.Firewall,
-    signatureWeaponId: 'fw_pistol',
+    signatureWeaponId: 'k8_jet_stream_flamethrower',
   },
 } as const
 

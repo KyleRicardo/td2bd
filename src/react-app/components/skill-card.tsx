@@ -13,17 +13,19 @@ function SkillCard({ id }: Props) {
   const skill = SKILL_VARIANTS_REGISTRY[id]
 
   return (
-    <Card className="px-4 py-2 flex flex-row items-center gap-4 min-h-15 backdrop-blur-lg text-sm">
-      <div>
-        <img
-          src={`/assets/skills/${id}.png`}
-          alt={t(id)}
-          className="size-9 object-contain"
-        />
-      </div>
-      <div className="flex flex-col">
-        <div>{t(id)}</div>
-        <div>{t(skill.platformId)}</div>
+    <Card className="gap-0 p-0 min-h-15 text-sm">
+      <div className="flex items-center gap-4 px-4 py-2">
+        <div>
+          <img
+            src={`/assets/skills/${id}.png`}
+            alt={t(id)}
+            className="size-9 object-contain"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div>{t(id)}</div>
+          <div>{t(skill.platformId)}</div>
+        </div>
       </div>
     </Card>
   )

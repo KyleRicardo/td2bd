@@ -58,7 +58,7 @@ function GearCard({ data }: Props) {
   }
 
   return (
-    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] text-[13px] min-h-[86px] backdrop-blur-lg">
+    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] text-[13px] min-h-[86px]">
       <div className={cn({
         'bg-gear-exotic': data.rarity === GearRarity.Exotic,
         'bg-gear-highend': data.rarity === GearRarity.HighEnd || data.rarity === GearRarity.Named,
@@ -72,7 +72,7 @@ function GearCard({ data }: Props) {
         'bg-gear-gearset-background': data.rarity === GearRarity.GearSet,
       })}
       >
-        <div className="flex flex-col gap-1 min-w-[70px] flex-1 justify-center items-center overflow-clip">
+        <div className="flex flex-col flex-1 gap-1 min-w-[70px] max-w-[40%] justify-center items-center overflow-clip">
           <div className="flex gap-0.5 items-center w-full">
             <GearSlotIcon slot={data.slot} />
             <span className={cn({
@@ -83,15 +83,17 @@ function GearCard({ data }: Props) {
               {displayName}
             </span>
           </div>
-          {data.rarity === GearRarity.Exotic && <GearSlotIcon slot={data.slot} className="size-9 flex-1" />}
-          {data.gearBrandId && <GearBrandIcon brandId={data.gearBrandId} className="size-9 flex-1" />}
-          {data.gearSetId && <GearSetIcon gearSetId={data.gearSetId} className="size-9 flex-1" />}
+          <div className="flex flex-col w-full pl-4">
+            {data.rarity === GearRarity.Exotic && <GearSlotIcon slot={data.slot} className="size-9" />}
+            {data.gearBrandId && <GearBrandIcon brandId={data.gearBrandId} className="size-9" />}
+            {data.gearSetId && <GearSetIcon gearSetId={data.gearSetId} className="size-9" />}
+          </div>
           <div className="flex gap-0.5 items-center w-full h-5">
             {data.talent && <GearTalent talentId={data.talent.id} recalibratable={data.talent.recalibratable} />}
           </div>
         </div>
 
-        <div className="flex flex-col gap-0.5 overflow-hidden">
+        <div className="flex flex-col sm:flex-1 gap-0.5 overflow-hidden">
           {data.coreAttributes.map(coreAttr => (
             <GearCoreAttribute key={coreAttr.id} id={coreAttr.id} value={coreAttr.value} />
           ))}

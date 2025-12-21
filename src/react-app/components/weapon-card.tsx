@@ -16,6 +16,7 @@ export interface WeaponData {
   coreAttributes: {
     id: WeaponCoreAttributeId
     value: number
+    isNamedItem?: boolean
   }[]
   attribute?: {
     id: WeaponAttributeId
@@ -41,7 +42,7 @@ function WeaponCard({ data }: Props) {
   const { t } = useTranslation('weapons')
 
   return (
-    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] text-sm min-h-[92px] backdrop-blur-lg">
+    <Card className="gap-0 p-0 grid grid-cols-[8px_1fr] text-sm min-h-24">
       <div className={cn({
         'bg-gear-exotic': data.rarity === WeaponRarity.Exotic,
         'bg-gear-highend': data.rarity === WeaponRarity.HighEnd || data.rarity === WeaponRarity.Named,
@@ -54,14 +55,14 @@ function WeaponCard({ data }: Props) {
       })}
       >
         <div className="flex flex-col gap-2 min-w-20 items-center">
-          <div className="flex flex-1 flex-col justify-center">
+          <button type="button" className="flex flex-1 flex-col justify-center leading-none">
             <WeaponIcon type={data.type} />
-          </div>
+          </button>
           <WeaponTalent talentId={data.talent.id} recalibratable={data.talent.recalibratable} />
         </div>
 
         <div className="flex flex-col flex-1 gap-1">
-          <div className={cn({
+          <div className={cn('flex items-center leading-none h-[19px]', {
             'text-gear-exotic': data.rarity === WeaponRarity.Exotic,
             'text-gear-highend': data.rarity === WeaponRarity.Named,
           })}
@@ -69,7 +70,7 @@ function WeaponCard({ data }: Props) {
             {t(data.id)}
           </div>
           {data.coreAttributes.map(coreAttr => (
-            <WeaponCoreAttribute key={coreAttr.id} attributeId={coreAttr.id} value={coreAttr.value} />
+            <WeaponCoreAttribute key={coreAttr.id} attributeId={coreAttr.id} value={coreAttr.value} isNamedItem={coreAttr.isNamedItem} />
           ))}
           {data.attribute && (
             <WeaponAttribute attributeId={data.attribute.id} value={data.attribute.value} />
