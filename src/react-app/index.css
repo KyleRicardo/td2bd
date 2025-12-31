@@ -9,6 +9,7 @@
   font-style: normal;
   font-display: swap;
   ascent-override: 95%;
+  descent-override: 5%;
 }
 
 /* 2. 定义华康圆体 (DFYuan - 全境中文字体) */

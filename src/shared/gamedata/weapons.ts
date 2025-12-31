@@ -54,6 +54,306 @@ export const WEAPONS: readonly WeaponBaseData[] = [
     },
   },
   {
+    id: 'm4a1',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.HighEnd,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.Sledgehammer,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'akm',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.HighEnd,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.Sledgehammer,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'aug',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.HighEnd,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.Sledgehammer,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'p416',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.HighEnd,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.Sledgehammer,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'g36',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.HighEnd,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.Sledgehammer,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'eagle_bearer',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Exotic,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'capacitor',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Exotic,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'chameleon',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Exotic,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'the_bighorn',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Exotic,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'lexington',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Named,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'shield_breaker',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Named,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'kingslayer',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Named,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'ruther',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Named,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'care_taker',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Named,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
+    id: 'hunter',
+    type: WeaponType.AssaultRifle,
+    rarity: WeaponRarity.Named,
+    coreAttribute: {
+      id: WeaponCoreAttributeIds.HpDamage,
+      value: 21.0,
+    },
+    attribute: {
+      id: WeaponAttributeIds.DamageToTOC,
+      value: 10.0,
+    },
+    talentId: WeaponTalentIds.ActumEst,
+    mods: {
+      opticRail: true,
+      muzzle: true,
+      underBarrelRail: true,
+      magazineSlot: true,
+    },
+  },
+  {
     id: 'st_elmos_engine',
     type: WeaponType.AssaultRifle,
     rarity: WeaponRarity.Exotic,
