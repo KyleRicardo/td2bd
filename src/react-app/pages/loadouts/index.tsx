@@ -3,15 +3,6 @@ import { GlobeIcon, ImportIcon, PlusIcon } from 'lucide-react'
 import armorImg from '@/assets/armor.png'
 import { Button } from '@/components/button'
 import { Card } from '@/components/card'
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/dialog'
 import { SelectWeaponDialog } from '@/components/select-weapon-dialog'
 
 export const Route = createFileRoute('/loadouts/')({

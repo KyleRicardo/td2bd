@@ -32,7 +32,7 @@ const LoadoutsLoadoutIdRoute = LoadoutsLoadoutIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/loadouts/$loadoutId': typeof LoadoutsLoadoutIdRoute
-  '/loadouts': typeof LoadoutsIndexRoute
+  '/loadouts/': typeof LoadoutsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -47,7 +47,7 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/loadouts/$loadoutId' | '/loadouts'
+  fullPaths: '/' | '/loadouts/$loadoutId' | '/loadouts/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/loadouts/$loadoutId' | '/loadouts'
   id: '__root__' | '/' | '/loadouts/$loadoutId' | '/loadouts/'
@@ -71,7 +71,7 @@ declare module '@tanstack/react-router' {
     '/loadouts/': {
       id: '/loadouts/'
       path: '/loadouts'
-      fullPath: '/loadouts'
+      fullPath: '/loadouts/'
       preLoaderRoute: typeof LoadoutsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
